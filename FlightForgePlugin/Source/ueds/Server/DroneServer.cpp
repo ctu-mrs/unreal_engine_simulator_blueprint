@@ -474,7 +474,27 @@ void _SetLocationAndRotationAsync(ADronePawn& DronePawn, const FVector Location,
 	DronePawn.SetActorLocationAndRotation(location, rotation, should_collide, &hit_result);
 
 	if (!DronePawn.uav_crashed_) {
-		DronePawn.uav_crashed_ = hit_result.IsValidBlockingHit();
+    // check the vector of hit result to deterine if the drone has landed or crashed
+    if(hit_result.IsValidBlockingHit())
+    {
+        FVector DownVector = FVector(0, 0, -1);
+
+        auto hit = FVector::DotProduct(hit_result.ImpactNormal, DownVector);
+      if(hit < -0.9)
+      {
+        UE_LOG(LogTemp, Warning, TEXT("DroneServer::SetLocationAndRotationAsync: Drone has not crashed the angle is %f"), FVector::DotProduct(hit_result.ImpactNormal, DownVector));
+        DronePawn.uav_crashed_ = false;
+      }
+      else
+      {
+        UE_LOG(LogTemp, Warning, TEXT("DroneServer::SetLocationAndRotationAsync: Drone has crashed the angle is %f"), FVector::DotProduct(hit_result.ImpactNormal, DownVector));
+        DronePawn.uav_crashed_ = true;
+      }
+      /* DronePawn.uav_crashed_ = true; */
+    }  
+
+
+		/* DronePawn.uav_crashed_ = hit_result.IsValidBlockingHit(); */
 	}
 
 	_PostRotation(DronePawn);
