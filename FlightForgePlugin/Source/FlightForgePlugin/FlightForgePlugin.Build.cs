@@ -1,5 +1,6 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
+using System.IO;
 using UnrealBuildTool;
 
 public class FlightForgePlugin : ModuleRules
@@ -51,5 +52,6 @@ public class FlightForgePlugin : ModuleRules
 				// ... add any modules that your module loads dynamically here ...
 			}
 			);
+		
 	}
 }

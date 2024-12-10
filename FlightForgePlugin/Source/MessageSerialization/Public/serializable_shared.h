@@ -2,7 +2,6 @@
 // This code is licensed under MIT license (see LICENSE for details)
 
 #pragma once
-
 #include <vector>
 
 #include <cereal/types/vector.hpp>
@@ -31,6 +30,7 @@ struct NetworkRequest
     archive(type);
   }
 };
+ 
 
 //}
 
@@ -55,6 +55,7 @@ struct NetworkResponse
   }
 };
 
+
 //}
 
 /* Ping //{ */
@@ -66,7 +67,6 @@ struct Request : public Common::NetworkRequest
   Request() : Common::NetworkRequest(static_cast<unsigned short>(MessageType::ping)) {
   }
 };
-
 struct Response : public Common::NetworkResponse
 {
   Response() : Common::NetworkResponse(static_cast<unsigned short>(MessageType::ping)) {
@@ -75,6 +75,7 @@ struct Response : public Common::NetworkResponse
   }
 };
 }  // namespace Ping
+
 
 //}
 
@@ -1318,7 +1319,6 @@ struct Response : public Common::NetworkResponse
 {
   Response() : Common::NetworkResponse(static_cast<unsigned short>(MessageType::get_time)){};
   explicit Response(bool _status) : Common::NetworkResponse(MessageType::get_time, _status){};
-
   double time;
 
   template <class Archive>
@@ -1354,3 +1354,4 @@ namespace GetWorldOrigin
 }  // namespace GameMode
 
 }  // namespace Serializable
+

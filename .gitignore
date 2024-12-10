@@ -1,3 +1,6 @@
 FlightForgePlugin/Binaries
 
 FlightForgePlugin/Intermediate
+
+.idea/
+.vscode/
