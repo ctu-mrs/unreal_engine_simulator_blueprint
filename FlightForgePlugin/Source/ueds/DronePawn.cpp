@@ -545,6 +545,7 @@ bool ADronePawn::GetCrashState(void) {
 
 //}
 
+/*GetRangefinderData()//{*/
 void ADronePawn::GetRangefinderData(double& range)
 {
   RangefinderHitsCriticalSection->Lock();
@@ -571,6 +572,7 @@ void ADronePawn::GetRangefinderData(double& range)
 
   RangefinderHitsCriticalSection->Unlock();
 }
+/*//}*/
 
 /* getLidarHits() //{ */
 
